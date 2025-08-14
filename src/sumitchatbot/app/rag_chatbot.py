@@ -5,8 +5,11 @@ from langchain.chains import RetrievalQA
 from langchain.llms import HuggingFacePipeline
 from transformers import pipeline
 
-# --- CONFIG ---
-CHROMA_DB_DIR = r"C:\\Users\\sumit\\Downloads\\chroma_db"
+"""
+RAG Chatbot: Uses ChromaDB with chunks stored directly from PDF (no intermediate files).
+Update CHROMA_DB_DIR to match the location used in pdf_to_chroma.py.
+"""
+CHROMA_DB_DIR = r"C:\\Users\\sumit\\Downloads\\chroma_db"  # Should match pdf_to_chroma.py
 EMBEDDING_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 LLM_MODEL = "google/flan-t5-base"  # You can change to any local LLM supported by HuggingFace
 
@@ -53,6 +56,3 @@ if user_input:
 # Display chat history
 for user_msg, bot_msg in st.session_state.chat_history:
     st.chat_message("user").write(user_msg)
-    st.chat_message("assistant").write(bot_msg)
-
-st.info("This chatbot uses RAG: it retrieves relevant context from your Chroma vector DB and augments a local LLM's response.")
